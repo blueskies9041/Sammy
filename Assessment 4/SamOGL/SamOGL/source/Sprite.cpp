@@ -19,18 +19,7 @@ CSprite::CSprite( const char* a_cpTexture, int a_iWidth, int a_iHeight, glm::vec
 	/* Texture Related Initialization */
 	glGenTextures(1, &m_glTextureID);
 	glActiveTexture(GL_TEXTURE0);
-
-	//SOIL (external lib) texture loading
-	unsigned char* image = SOIL_load_image(a_cpTexture, &a_iWidth, &a_iHeight, 0, SOIL_LOAD_RGBA);
-	glBindTexture( GL_TEXTURE_2D, m_glTextureID);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, a_iWidth, a_iHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-	SOIL_free_image_data(image);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+	LoadTexture(a_cpTexture, m_iWidth, m_iHeight);
 	m_iTextureLocation = glGetUniformLocation(m_glShaderProgram, "tex");
 }
 
@@ -88,4 +77,16 @@ void CSprite::Cleanup() {
 	glDeleteBuffers(1, &m_glVBO);
 	glDeleteBuffers(1, &m_glEBO);
 	glDeleteVertexArrays(1, &m_glVAO);
+}
+
+void CSprite::LoadTexture(const char * a_cpFilepath, int a_iWidth, int a_iHeight) {
+//SOIL (external lib) texture loading
+	unsigned char* cpImage = SOIL_load_image(a_cpFilepath, &a_iWidth, &a_iHeight, 0, SOIL_LOAD_RGBA);
+	glBindTexture( GL_TEXTURE_2D, m_glTextureID);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, a_iWidth, a_iHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, cpImage);
+	SOIL_free_image_data(cpImage);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }

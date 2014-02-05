@@ -36,9 +36,7 @@ namespace Sam
 {
 	extern int iWindowWidth;
 	extern int iWindowHeight;
-
 	extern glm::mat4 m4Projection;
-	extern glm::mat4 m4MVP;
 
 	GLFWwindow* NewWindow();
 
@@ -73,7 +71,5 @@ public:
 	const T &operator() () const { return m_t; }
 	void operator() ( const T &t ) { m_t = t; }
 };
-
-
 
 #endif

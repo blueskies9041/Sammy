@@ -27,6 +27,7 @@ class CSprite : public CQuad
 		void Draw();
 		void Input();
 		void Cleanup();
+		void LoadTexture(const char * a_cpFilepath, int a_iWidth, int a_iHeight);
 
 		bool CheckBoxCollision(CSprite &a_roSprite);
 };

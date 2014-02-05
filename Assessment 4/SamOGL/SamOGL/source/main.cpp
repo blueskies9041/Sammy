@@ -8,8 +8,11 @@
 			Redid everything.
 
 		* To Do:
-			Sprite class improvements
-				Get/Setters
+				Sprite class improvements
+				Text
+				UV/Rotation Stuff
+				Particle System
+				Get/Setters??
 				Physics
 				Animation
 				Engine class
@@ -28,8 +31,7 @@
 using namespace std;
 /* */
 
-void main()
-{
+void main() {
 	
 	/* Window */
 	GLFWwindow* MyWindow = Sam::NewWindow();
@@ -40,8 +42,7 @@ void main()
 	SpriteB.m_v3Position = glm::vec3(100,100,0);
 
 	/* Main Loop */
-	while (!glfwWindowShouldClose(MyWindow))
-    {	
+	while (!glfwWindowShouldClose(MyWindow)) {	
         /* Render loop*/
 		Justin::glfw_update_fps_counter(MyWindow);
 
@@ -50,10 +51,9 @@ void main()
 		glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		/* DEBUGGING */
-		if(glfwGetTime() >= 5)
-		{
+		if(glfwGetTime() >= 5) {
 			glfwSetTime(0);
-			cout << "("<<Sprite->m_v3Position.x << "," << Sprite->m_v3Position.y<< ")" << endl;
+			cout << "("<< Sprite->m_v3Position.x << "," << Sprite->m_v3Position.y << ")" << endl;
 		}
 
 		Sprite->Input();
