@@ -36,8 +36,10 @@ namespace Sam
 {
 	extern int iWindowWidth;
 	extern int iWindowHeight;
+	extern GLFWwindow * MyWindow;
 	extern glm::mat4 m4Projection;
 
+	GLuint LoadTexture(const char *, int, int);
 	GLFWwindow* NewWindow();
 
 };

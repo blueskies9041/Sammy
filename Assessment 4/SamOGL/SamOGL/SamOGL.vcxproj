@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Misc.cpp" />
+    <ClCompile Include="source\ParticleSystem.cpp" />
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\Quad.cpp" />
     <ClCompile Include="source\Sprite.cpp" />
@@ -80,6 +81,7 @@
     <ClInclude Include="include\GLLOG.h" />
     <ClInclude Include="include\JustinTxtReader.h" />
     <ClInclude Include="include\Misc.h" />
+    <ClInclude Include="include\ParticleSystem.h" />
     <ClInclude Include="include\Shader.h" />
     <ClInclude Include="include\Quad.h" />
     <ClInclude Include="include\Sprite.h" />
@@ -88,6 +90,9 @@
   <ItemGroup>
     <None Include="resources\shaders\basic.frag" />
     <None Include="resources\shaders\basic.vert" />
+    <None Include="resources\shaders\particle.frag" />
+    <None Include="resources\shaders\particle.vert" />
+    <None Include="resources\textures\particle.bmp" />
     <None Include="resources\textures\test.bmp" />
     <None Include="resources\textures\test2.bmp" />
   </ItemGroup>

@@ -21,14 +21,13 @@ class CSprite : public CQuad
 		GLFWwindow * m_oGameWindow;
 
 		CSprite();
-		CSprite( const char* a_cpTexture, int a_iWidth, int a_iHeight, glm::vec4 a_v4Color , GLFWwindow * a_opWindow);
+		CSprite( const char* a_cpTexture, int a_iWidth, int a_iHeight, int a_iPosX, int a_iPosY, glm::vec4 a_v4Color , GLFWwindow * a_opWindow);
 		~CSprite();
 
 		void Draw();
 		void Input();
 		void Cleanup();
-		void LoadTexture(const char * a_cpFilepath, int a_iWidth, int a_iHeight);
-
+	
 		bool CheckBoxCollision(CSprite &a_roSprite);
 };
 

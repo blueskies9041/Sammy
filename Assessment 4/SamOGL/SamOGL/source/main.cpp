@@ -34,12 +34,12 @@ using namespace std;
 void main() {
 	
 	/* Window */
-	GLFWwindow* MyWindow = Sam::NewWindow();
+		//Temporarily in Sam namespace for GLFW window variable passing issues with Particle system class
 
 	/* Test Sprite Object */
-	CSprite * Sprite = new CSprite("resources/textures/test.bmp", 128, 128, glm::vec4(0,0,1,1), MyWindow);
-	CSprite SpriteB("resources/textures/test.bmp", 128, 128, glm::vec4(0,0,1,1), MyWindow);
-	SpriteB.m_v3Position = glm::vec3(100,100,0);
+	CSprite * Sprite = new CSprite("resources/textures/test.bmp", 128, 128, 512, 368, glm::vec4(0,0,1,1), MyWindow);
+	CSprite SpriteB("resources/textures/test.bmp", 128, 128, 100, 100, glm::vec4(0,0,1,1), MyWindow);
+	
 
 	/* Main Loop */
 	while (!glfwWindowShouldClose(MyWindow)) {	

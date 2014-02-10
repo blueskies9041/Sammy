@@ -1,14 +1,13 @@
 #include "Sprite.h"
-#include "SOIL.h"
 
-CSprite::CSprite( const char* a_cpTexture, int a_iWidth, int a_iHeight, glm::vec4 a_v4Color , GLFWwindow * a_opWindow) 
+CSprite::CSprite( const char* a_cpTexture, int a_iWidth, int a_iHeight, int a_iPosX, int a_iPosY, glm::vec4 a_v4Color , GLFWwindow * a_opWindow) 
 : CQuad(glm::vec4(a_v4Color) , a_iWidth, a_iHeight) {
 
 	m_oGameWindow = a_opWindow; // Pass in the App Window for glfw stuff
 
 	/* Position Related Initialization */
 
-	m_v3Position = glm::vec3(512.0f, 384.0f, 0.0f);
+	m_v3Position = glm::vec3((float)a_iPosX, (float)a_iPosY, 0.0f);
 	m_v3Speed = glm::vec3(0.0f, 0.0f, 0.0f);
 	m_v2Scale = glm::vec2(1.0f, 1.0f);
 	m_v4SpriteColor = a_v4Color;
@@ -19,7 +18,7 @@ CSprite::CSprite( const char* a_cpTexture, int a_iWidth, int a_iHeight, glm::vec
 	/* Texture Related Initialization */
 	glGenTextures(1, &m_glTextureID);
 	glActiveTexture(GL_TEXTURE0);
-	LoadTexture(a_cpTexture, m_iWidth, m_iHeight);
+	m_glTextureID = LoadTexture(a_cpTexture, m_iWidth, m_iHeight);
 	m_iTextureLocation = glGetUniformLocation(m_glShaderProgram, "tex");
 }
 
@@ -79,14 +78,3 @@ void CSprite::Cleanup() {
 	glDeleteVertexArrays(1, &m_glVAO);
 }
 
-void CSprite::LoadTexture(const char * a_cpFilepath, int a_iWidth, int a_iHeight) {
-//SOIL (external lib) texture loading
-	unsigned char* cpImage = SOIL_load_image(a_cpFilepath, &a_iWidth, &a_iHeight, 0, SOIL_LOAD_RGBA);
-	glBindTexture( GL_TEXTURE_2D, m_glTextureID);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, a_iWidth, a_iHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, cpImage);
-	SOIL_free_image_data(cpImage);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-}

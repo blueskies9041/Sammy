@@ -5,6 +5,8 @@
 #include <fstream>
 #include "Assert.h"
 #include "GLLOG.h"
+#include "SOIL.h"
+
 
 using namespace std;
 
@@ -46,7 +48,8 @@ namespace Sam
 	int iWindowHeight = 768;
 
 	glm::mat4 m4Projection = glm::ortho(0.0f,1024.0f,768.0f,0.0f,0.0f,1.0f);
-	
+	GLFWwindow* MyWindow = Sam::NewWindow();
+
 	GLFWwindow* NewWindow()
 	{
 		glfwInit();
@@ -87,6 +90,22 @@ namespace Sam
 
 		return MyWindow;
 		}
+
+	GLuint LoadTexture(const char * a_cpFilepath, int a_iWidth, int a_iHeight) {
+//SOIL (external lib) texture loading
+
+	GLuint TextureID = 0;
+	unsigned char* cpImage = SOIL_load_image(a_cpFilepath, &a_iWidth, &a_iHeight, 0, SOIL_LOAD_RGBA);
+	glBindTexture( GL_TEXTURE_2D, TextureID);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, a_iWidth, a_iHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, cpImage);
+	SOIL_free_image_data(cpImage);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	return TextureID;
+}
 
 };
 

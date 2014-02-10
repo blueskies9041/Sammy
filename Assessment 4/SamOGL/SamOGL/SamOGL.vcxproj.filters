@@ -39,6 +39,9 @@
     <ClCompile Include="source\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\ParticleSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\GLLOG.h">
@@ -62,6 +65,9 @@
     <ClInclude Include="include\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ParticleSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\textures\test.bmp">
@@ -75,6 +81,15 @@
     </None>
     <None Include="resources\textures\test2.bmp">
       <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="resources\textures\particle.bmp">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="resources\shaders\particle.vert">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\particle.frag">
+      <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
