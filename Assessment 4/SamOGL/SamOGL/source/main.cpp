@@ -26,6 +26,7 @@
 #include "glew.h"
 #include "glfw3.h"
 #include "Sprite.h"
+#include "Particle.h"
 #include <iostream>
 
 using namespace std;
@@ -37,31 +38,36 @@ void main() {
 		//Temporarily in Sam namespace for GLFW window variable passing issues with Particle system class
 
 	/* Test Sprite Object */
-	CSprite * Sprite = new CSprite("resources/textures/test.bmp", 128, 128, 512, 368, glm::vec4(0,0,1,1), MyWindow);
-	CSprite SpriteB("resources/textures/test.bmp", 128, 128, 100, 100, glm::vec4(0,0,1,1), MyWindow);
+	//CSprite * Sprite = new CSprite("resources/textures/test.bmp", 128, 128, 512, 368, glm::vec4(0,0,1,1), MyWindow);
+	//CSprite SpriteB("resources/textures/test.bmp", 128, 128, 100, 100, glm::vec4(0,0,1,1), MyWindow);
 	
+	/* Test Particle System Object */
 
+	glm::vec3 force[1] = {glm::vec3(0,1,0)};
+
+	CParticleSystem * P = new CParticleSystem(100, 1, force, Create, glm::vec3(5,5,0), 3, 128, MyWindow);
 	/* Main Loop */
 	while (!glfwWindowShouldClose(MyWindow)) {	
         /* Render loop*/
 		Justin::glfw_update_fps_counter(MyWindow);
 
 		glViewport(0,0,Sam::iWindowWidth, Sam::iWindowHeight);
-		glClearColor(0.0f, 0.5f, 0.8f, 0.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		/* DEBUGGING */
 		if(glfwGetTime() >= 5) {
 			glfwSetTime(0);
-			cout << "("<< Sprite->m_v3Position.x << "," << Sprite->m_v3Position.y << ")" << endl;
+			//cout << "("<< Sprite->m_v3Position.x << "," << Sprite->m_v3Position.y << ")" << endl;
 		}
 
-		Sprite->Input();
-		Sprite->Draw();
-		SpriteB.Draw();
-
-		if(Sprite->CheckBoxCollision(SpriteB))
-			SpriteB.m_v3Position.x *= -1.0f;
+		//Sprite->Input();
+		P->Update();
+		//Sprite->Draw();
+		//SpriteB.Draw();
+	
+		//if(Sprite->CheckBoxCollision(SpriteB))
+		//	SpriteB.m_v3Position.x *= -1.0f;
 
         glfwSwapBuffers(MyWindow);
 
@@ -72,9 +78,10 @@ void main() {
 		glfwPollEvents();
     }
 
-	delete Sprite;
-	Sprite->Cleanup();
-	SpriteB.Cleanup();
+	//Sprite->Cleanup();
+	//delete Sprite;
+	
+	//SpriteB.Cleanup();
 
 	glfwTerminate();
 }

@@ -47,7 +47,8 @@ namespace Sam
 	int iWindowWidth = 1024;
 	int iWindowHeight = 768;
 
-	glm::mat4 m4Projection = glm::ortho(0.0f,1024.0f,768.0f,0.0f,0.0f,1.0f);
+	glm::mat4 m4Projection = glm::ortho(0.0f,1024.0f,768.0f,0.0f,0.0f,100.0f);
+	glm::mat4 m4View = glm::mat4(1.0f);
 	GLFWwindow* MyWindow = Sam::NewWindow();
 
 	GLFWwindow* NewWindow()
@@ -85,8 +86,8 @@ namespace Sam
 		printf ("Renderer: %s\n", renderer);
 		printf( "OpenGL Version: %s\n\n", version);
 
-		//glEnable (GL_DEPTH_TEST);
-		//glDepthFunc (GL_LESS);
+		glEnable (GL_DEPTH_TEST);
+		glDepthFunc (GL_LESS);
 
 		return MyWindow;
 		}

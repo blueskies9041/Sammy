@@ -5,7 +5,7 @@
 using namespace std;
 
 
-int g_iMaxParticles = 100000;
+int g_iMaxParticles = 1000;
 double fLastTime = glfwGetTime();
 
 CParticleSystem::CParticleSystem(int a_iWidth, int a_iHeight, int a_iMaxParticles)
@@ -56,6 +56,9 @@ CParticleSystem::CParticleSystem(int a_iWidth, int a_iHeight, int a_iMaxParticle
 
 }
 
+CParticleSystem::~CParticleSystem () {
+}
+
 int CParticleSystem::FindUnusedParticle() {
 
 	for(int i = 0; i < m_iMaxParticles; ++i) {
@@ -78,6 +81,7 @@ int CParticleSystem::FindUnusedParticle() {
 void CParticleSystem::SortParticles() {
 	std::sort(&m_aParticles[0], &m_aParticles[m_iMaxParticles]);
 }
+
 void CParticleSystem::Update() {
 
 	//time

@@ -8,12 +8,12 @@ CSprite::CSprite( const char* a_cpTexture, int a_iWidth, int a_iHeight, int a_iP
 	/* Position Related Initialization */
 
 	m_v3Position = glm::vec3((float)a_iPosX, (float)a_iPosY, 0.0f);
-	m_v3Speed = glm::vec3(0.0f, 0.0f, 0.0f);
+	m_v3Speed = glm::vec3(1.0f, 0.0f, 0.0f);
 	m_v2Scale = glm::vec2(1.0f, 1.0f);
 	m_v4SpriteColor = a_v4Color;
 	m_m4Model = glm::mat4(1.0f);
 	
-	m_iMatrixLocation = glGetUniformLocation(m_glShaderProgram, "trans");
+	m_iMatrixLocation = glGetUniformLocation(m_glShaderProgram, "MVP");
 
 	/* Texture Related Initialization */
 	glGenTextures(1, &m_glTextureID);
@@ -22,6 +22,8 @@ CSprite::CSprite( const char* a_cpTexture, int a_iWidth, int a_iHeight, int a_iP
 	m_iTextureLocation = glGetUniformLocation(m_glShaderProgram, "tex");
 }
 
+CSprite::CSprite(){
+}
 CSprite::~CSprite(){
 }
 
@@ -45,7 +47,7 @@ void CSprite::Draw() {
 
 void CSprite::Input() {
 
-	m_v3Speed = glm::vec3(0.0f, 0.0f, 0.0f);
+	//m_v3Speed = glm::vec3(0.0f, 0.0f, 0.0f);
 
 	if (GLFW_PRESS == glfwGetKey(m_oGameWindow, GLFW_KEY_W))
 		m_v3Speed.y -= 1.0f;

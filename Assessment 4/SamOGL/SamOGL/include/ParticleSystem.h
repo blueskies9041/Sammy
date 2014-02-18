@@ -25,7 +25,7 @@ class CParticleSystem {
 	public:
 		//data
 
-		Particle m_aParticles[100000];
+		Particle m_aParticles[1000];
 		int m_iMaxParticles;
 		int m_iLastUsedParticle;
 		int m_iWidth;
